@@ -1,42 +1,37 @@
 package com.backpouch
 
-import net.minecraft.world.item.Item
-import net.neoforged.neoforge.registries.DeferredItem
-import net.neoforged.neoforge.registries.DeferredRegister
+import com.backpouch.item.BackpouchItem
+import com.backpouch.item.SlotUpgradeItem
 import net.minecraft.core.registries.Registries
+import net.minecraft.world.item.Item
+import net.neoforged.neoforge.registries.DeferredHolder
+import net.neoforged.neoforge.registries.DeferredRegister
+import java.util.function.Supplier
 
 object BackpouchItems {
     val ITEMS = DeferredRegister.create(Registries.ITEM, BackpouchMod.MOD_ID)
 
-    val LEATHER_BACKPOUCH: DeferredItem<Item> = ITEMS.register("leather_backpouch") {
-        Item(Item.Properties().stacksTo(1))
-    }
+    val LEATHER_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("leather_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1), baseSlots = 4) })
 
-    val IRON_BACKPOUCH: DeferredItem<Item> = ITEMS.register("iron_backpouch") {
-        Item(Item.Properties().stacksTo(1))
-    }
+    val IRON_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("iron_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1), baseSlots = 6) })
 
-    val GOLD_BACKPOUCH: DeferredItem<Item> = ITEMS.register("gold_backpouch") {
-        Item(Item.Properties().stacksTo(1))
-    }
+    val GOLD_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("gold_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1), baseSlots = 8) })
 
-    val DIAMOND_BACKPOUCH: DeferredItem<Item> = ITEMS.register("diamond_backpouch") {
-        Item(Item.Properties().stacksTo(1))
-    }
+    val DIAMOND_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("diamond_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1), baseSlots = 10) })
 
-    val NETHERITE_BACKPOUCH: DeferredItem<Item> = ITEMS.register("netherite_backpouch") {
-        Item(Item.Properties().stacksTo(1).fireResistant())
-    }
+    val NETHERITE_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("netherite_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1).fireResistant(), baseSlots = 12, isUpgradable = true) })
 
-    val BI_SLOT_UPGRADE: DeferredItem<Item> = ITEMS.register("bi_slot_upgrade") {
-        Item(Item.Properties().stacksTo(16))
-    }
+    val BI_SLOT_UPGRADE: DeferredHolder<Item, SlotUpgradeItem> = ITEMS.register("bi_slot_upgrade",
+        Supplier { SlotUpgradeItem(Item.Properties().stacksTo(16), slotBonus = 2) })
 
-    val QUADRU_SLOT_UPGRADE: DeferredItem<Item> = ITEMS.register("quadru_slot_upgrade") {
-        Item(Item.Properties().stacksTo(16))
-    }
+    val QUADRU_SLOT_UPGRADE: DeferredHolder<Item, SlotUpgradeItem> = ITEMS.register("quadru_slot_upgrade",
+        Supplier { SlotUpgradeItem(Item.Properties().stacksTo(16), slotBonus = 4) })
 
-    val TOMBSTONE_UPGRADE: DeferredItem<Item> = ITEMS.register("tombstone_upgrade") {
-        Item(Item.Properties().stacksTo(16).fireResistant())
-    }
+    val TOMBSTONE_UPGRADE: DeferredHolder<Item, Item> = ITEMS.register("tombstone_upgrade",
+        Supplier { Item(Item.Properties().stacksTo(16).fireResistant()) })
 }

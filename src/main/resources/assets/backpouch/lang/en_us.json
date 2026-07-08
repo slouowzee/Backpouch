@@ -7,5 +7,7 @@
   "item.backpouch.bi_slot_upgrade": "Bi Slot Upgrade",
   "item.backpouch.quadru_slot_upgrade": "Quadru Slot Upgrade",
   "item.backpouch.tombstone_upgrade": "Tombstone Upgrade",
-  "itemGroup.backpouch": "Backpouch"
+  "itemGroup.backpouch": "Backpouch",
+  "tooltip.backpouch.charm_slots": "+%s Charm Slots when worn",
+  "tooltip.backpouch.sockets": "Sockets: %s/%s"
 }
