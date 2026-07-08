@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "gIg",
+    "gBg"
+  ],
+  "key": {
+    "G": { "item": "minecraft:gold_block" },
+    "g": { "item": "minecraft:gold_ingot" },
+    "I": { "item": "backpouch:iron_backpouch" },
+    "B": { "item": "minecraft:blaze_rod" }
+  },
+  "result": { "id": "backpouch:gold_backpouch", "count": 1 }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BNB",
+    "NUN",
+    "BNB"
+  ],
+  "key": {
+    "B": { "item": "minecraft:dragon_breath" },
+    "N": { "item": "minecraft:nether_star" },
+    "U": { "item": "backpouch:bi_slot_upgrade" }
+  },
+  "result": { "id": "backpouch:quadru_slot_upgrade", "count": 1 }
+}

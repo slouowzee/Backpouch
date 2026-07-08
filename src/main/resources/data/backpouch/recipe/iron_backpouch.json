@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "iLi",
+    "FHF"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_block" },
+    "i": { "item": "minecraft:iron_ingot" },
+    "L": { "item": "backpouch:leather_backpouch" },
+    "F": { "item": "minecraft:string" },
+    "H": { "item": "minecraft:hopper" }
+  },
+  "result": { "id": "backpouch:iron_backpouch", "count": 1 }
+}

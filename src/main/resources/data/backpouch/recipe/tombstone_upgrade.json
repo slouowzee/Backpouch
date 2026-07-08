@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GTG",
+    "SCS",
+    "EAE"
+  ],
+  "key": {
+    "G": { "item": "minecraft:ghast_tear" },
+    "T": { "item": "minecraft:sugar" },
+    "S": { "item": "minecraft:stone_slab" },
+    "C": { "item": "minecraft:chest" },
+    "E": { "item": "minecraft:ender_pearl" },
+    "A": { "item": "minecraft:golden_apple" }
+  },
+  "result": { "id": "backpouch:tombstone_upgrade", "count": 1 }
+}
