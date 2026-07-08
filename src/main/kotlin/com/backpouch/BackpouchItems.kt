@@ -33,6 +33,6 @@ object BackpouchItems {
     val QUADRU_SLOT_UPGRADE: DeferredHolder<Item, SlotUpgradeItem> = ITEMS.register("quadru_slot_upgrade",
         Supplier { SlotUpgradeItem(Item.Properties().stacksTo(16), slotBonus = 4) })
 
-    val TOMBSTONE_UPGRADE: DeferredHolder<Item, Item> = ITEMS.register("tombstone_upgrade",
-        Supplier { Item(Item.Properties().stacksTo(16).fireResistant()) })
+    val TOMBSTONE_UPGRADE: DeferredHolder<Item, SlotUpgradeItem> = ITEMS.register("tombstone_upgrade",
+        Supplier { SlotUpgradeItem(Item.Properties().stacksTo(16).fireResistant(), slotBonus = 0) })
 }
