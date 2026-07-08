@@ -7,6 +7,7 @@ import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.ItemStack
 import net.neoforged.neoforge.items.SlotItemHandler
+import top.theillusivec4.curios.api.CuriosApi
 
 class UpgradeMenu(
     handler: UpgradeInventory,
@@ -23,8 +24,20 @@ class UpgradeMenu(
     init {
         check(handler.slots == 2) { "UpgradeInventory must have exactly 2 slots" }
 
-        addSlot(SlotItemHandler(handler, 0, 8, 18))
-        addSlot(SlotItemHandler(handler, 1, 26, 18))
+        addSlot(object : SlotItemHandler(handler, 0, 8, 18) {
+            override fun mayPickup(player: Player): Boolean {
+                if (!hasItem()) return true
+                if (getItem().item is SlotUpgradeItem && hasOccupiedCharmSlots(player)) return false
+                return super.mayPickup(player)
+            }
+        })
+        addSlot(object : SlotItemHandler(handler, 1, 26, 18) {
+            override fun mayPickup(player: Player): Boolean {
+                if (!hasItem()) return true
+                if (getItem().item is SlotUpgradeItem && hasOccupiedCharmSlots(player)) return false
+                return super.mayPickup(player)
+            }
+        })
 
         for (row in 0..2) {
             for (col in 0..8) {
@@ -60,5 +73,17 @@ class UpgradeMenu(
         }
 
         return original
+    }
+
+    private fun hasOccupiedCharmSlots(player: Player): Boolean {
+        val opt = CuriosApi.getCuriosInventory(player)
+        if (opt.isEmpty) return false
+        val curios = opt.get()
+        val charmHandler = curios.curios["charm"] ?: return false
+        for (i in 0 until charmHandler.slots) {
+            val stack = charmHandler.stacks.getStackInSlot(i)
+            if (!stack.isEmpty && stack.item !is BackpouchItem) return true
+        }
+        return false
     }
 }

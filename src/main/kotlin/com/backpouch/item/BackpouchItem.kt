@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
+import top.theillusivec4.curios.api.CuriosApi
 import top.theillusivec4.curios.api.SlotAttribute
 import top.theillusivec4.curios.api.SlotContext
 import top.theillusivec4.curios.api.type.capability.ICurio
@@ -29,6 +30,25 @@ open class BackpouchItem(
     }
 
     override fun hasCurioCapability(stack: ItemStack): Boolean = true
+
+    override fun canUnequip(slotContext: SlotContext, stack: ItemStack): Boolean {
+        val opt = CuriosApi.getCuriosInventory(slotContext.entity())
+        if (opt.isEmpty) return true
+        val curios = opt.get()
+        for (entry in curios.curios.entries) {
+            if (entry.key == slotContext.identifier()) {
+                val handler = entry.value
+                for (i in 0 until handler.slots) {
+                    val itemStack = handler.stacks.getStackInSlot(i)
+                    if (itemStack.isEmpty) continue
+                    if (i == slotContext.index()) continue
+                    if (itemStack.item is BackpouchItem) continue
+                    return false
+                }
+            }
+        }
+        return true
+    }
 
     open fun getUpgradeBonus(stack: ItemStack, provider: HolderLookup.Provider): Int = 0
 
