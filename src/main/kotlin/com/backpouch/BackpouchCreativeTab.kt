@@ -19,8 +19,9 @@ object BackpouchCreativeTab {
                 output.accept(BackpouchItems.GOLD_BACKPOUCH.get())
                 output.accept(BackpouchItems.DIAMOND_BACKPOUCH.get())
                 output.accept(BackpouchItems.NETHERITE_BACKPOUCH.get())
-                output.accept(BackpouchItems.SLOT_UPGRADE_BASIC.get())
-                output.accept(BackpouchItems.SLOT_UPGRADE_ADVANCED.get())
+                output.accept(BackpouchItems.BI_SLOT_UPGRADE.get())
+                output.accept(BackpouchItems.QUADRU_SLOT_UPGRADE.get())
+                output.accept(BackpouchItems.TOMBSTONE_UPGRADE.get())
             }
             .build()
     }

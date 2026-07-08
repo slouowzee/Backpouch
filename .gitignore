@@ -3,6 +3,7 @@ build/
 *.jar
 !/gradle/wrapper/gradle-wrapper.jar
 run/
+runs/
 out/
 .classpath
 .project
@@ -16,3 +17,5 @@ bin/
 *.log
 crash-reports/
 local/
+.kotlin/
+.DS_Store

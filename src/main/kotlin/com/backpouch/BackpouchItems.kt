@@ -28,11 +28,15 @@ object BackpouchItems {
         Item(Item.Properties().stacksTo(1).fireResistant())
     }
 
-    val SLOT_UPGRADE_BASIC: DeferredItem<Item> = ITEMS.register("slot_upgrade_basic") {
+    val BI_SLOT_UPGRADE: DeferredItem<Item> = ITEMS.register("bi_slot_upgrade") {
         Item(Item.Properties().stacksTo(16))
     }
 
-    val SLOT_UPGRADE_ADVANCED: DeferredItem<Item> = ITEMS.register("slot_upgrade_advanced") {
+    val QUADRU_SLOT_UPGRADE: DeferredItem<Item> = ITEMS.register("quadru_slot_upgrade") {
         Item(Item.Properties().stacksTo(16))
+    }
+
+    val TOMBSTONE_UPGRADE: DeferredItem<Item> = ITEMS.register("tombstone_upgrade") {
+        Item(Item.Properties().stacksTo(16).fireResistant())
     }
 }

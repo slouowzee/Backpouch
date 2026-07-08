@@ -4,7 +4,8 @@
   "item.backpouch.gold_backpouch": "Sacoche en or",
   "item.backpouch.diamond_backpouch": "Sacoche en diamant",
   "item.backpouch.netherite_backpouch": "Sacoche en n\u00e9therite",
-  "item.backpouch.slot_upgrade_basic": "Am\u00e9lioration basique",
-  "item.backpouch.slot_upgrade_advanced": "Am\u00e9lioration avanc\u00e9e",
+  "item.backpouch.bi_slot_upgrade": "Am\u00e9lioration bi-emplacement",
+  "item.backpouch.quadru_slot_upgrade": "Am\u00e9lioration quadru-emplacement",
+  "item.backpouch.tombstone_upgrade": "Am\u00e9lioration fun\u00e9raire",
   "itemGroup.backpouch": "Backpouch"
 }

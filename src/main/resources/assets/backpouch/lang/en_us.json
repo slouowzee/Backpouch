@@ -4,7 +4,8 @@
   "item.backpouch.gold_backpouch": "Gold Backpouch",
   "item.backpouch.diamond_backpouch": "Diamond Backpouch",
   "item.backpouch.netherite_backpouch": "Netherite Backpouch",
-  "item.backpouch.slot_upgrade_basic": "Basic Slot Upgrade",
-  "item.backpouch.slot_upgrade_advanced": "Advanced Slot Upgrade",
+  "item.backpouch.bi_slot_upgrade": "Bi Slot Upgrade",
+  "item.backpouch.quadru_slot_upgrade": "Quadru Slot Upgrade",
+  "item.backpouch.tombstone_upgrade": "Tombstone Upgrade",
   "itemGroup.backpouch": "Backpouch"
 }

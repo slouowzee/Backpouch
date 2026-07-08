@@ -2,7 +2,6 @@
 modId = "backpouch"
 version = "1.0.0"
 displayName = "Backpouch"
-logoFile = "backpouch.png"
 description = "Adds a custom Curios backpouch slot with tiered sacoches that grant extra charm slots."
 authors = "slouowze"
 
