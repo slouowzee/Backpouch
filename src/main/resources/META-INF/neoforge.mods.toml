@@ -8,7 +8,7 @@ authors = "slouowze"
 [[dependencies.backpouch]]
     modId = "neoforge"
     mandatory = true
-    versionRange = "[21,)"
+    versionRange = "[21.1,)"
     ordering = "NONE"
     side = "BOTH"
 
