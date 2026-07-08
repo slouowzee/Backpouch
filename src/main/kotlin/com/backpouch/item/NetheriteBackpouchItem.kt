@@ -1,6 +1,7 @@
 package com.backpouch.item
 
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
@@ -23,6 +24,21 @@ class NetheriteBackpouchItem(properties: Properties, baseSlots: Int) :
             ))
         }
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide)
+    }
+
+    override fun getUpgradeCount(stack: ItemStack): Int {
+        val data = stack.get(DataComponents.CUSTOM_DATA) ?: return 0
+        val tag = data.copyTag()
+        if (!tag.contains("upgrades", 10)) return 0
+        val upgrades = tag.getCompound("upgrades")
+        if (!upgrades.contains("Items", 9)) return 0
+        val items = upgrades.getList("Items", 10)
+        var count = 0
+        for (i in 0 until items.size) {
+            val slotTag = items.getCompound(i)
+            if (slotTag.getString("id").isNotBlank()) count++
+        }
+        return count
     }
 
     override fun getUpgradeBonus(stack: ItemStack, provider: HolderLookup.Provider): Int {

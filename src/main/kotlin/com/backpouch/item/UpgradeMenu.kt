@@ -23,16 +23,16 @@ class UpgradeMenu(
     init {
         check(handler.slots == 2) { "UpgradeInventory must have exactly 2 slots" }
 
-        addSlot(SlotItemHandler(handler, 0, 62, 35))
-        addSlot(SlotItemHandler(handler, 1, 98, 35))
+        addSlot(SlotItemHandler(handler, 0, 8, 18))
+        addSlot(SlotItemHandler(handler, 1, 26, 18))
 
         for (row in 0..2) {
             for (col in 0..8) {
-                addSlot(Slot(inv, col + row * 9 + 9, 8 + col * 18, 84 + row * 18))
+                addSlot(Slot(inv, col + row * 9 + 9, 8 + col * 18, 85 + row * 18))
             }
         }
         for (col in 0..8) {
-            addSlot(Slot(inv, col, 8 + col * 18, 142))
+            addSlot(Slot(inv, col, 8 + col * 18, 143))
         }
     }
 

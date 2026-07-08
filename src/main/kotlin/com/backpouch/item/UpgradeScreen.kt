@@ -19,8 +19,9 @@ class UpgradeScreen(
     override fun renderBg(graphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
         val x = (width - imageWidth) / 2
         val y = (height - imageHeight) / 2
-        graphics.blit(CONTAINER_TEXTURE, x, y, 0, 0, imageWidth, 3 * 18 + 17)
-        graphics.blit(CONTAINER_TEXTURE, x, y + 3 * 18 + 17, 0, 3 * 18 + 17, imageWidth, imageHeight)
+        val topHeight = 1 * 18 + 17
+        graphics.blit(CONTAINER_TEXTURE, x, y, 0, 0, imageWidth, topHeight)
+        graphics.blit(CONTAINER_TEXTURE, x, y + topHeight, 0, 7 * 18 + 17, imageWidth, 96)
     }
 
     override fun renderLabels(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {

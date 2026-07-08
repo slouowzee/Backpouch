@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.ai.attributes.Attribute
@@ -28,6 +29,8 @@ open class BackpouchItem(
     override fun hasCurioCapability(stack: ItemStack): Boolean = true
 
     open fun getUpgradeBonus(stack: ItemStack, provider: HolderLookup.Provider): Int = 0
+
+    open fun getUpgradeCount(stack: ItemStack): Int = 0
 
     override fun getAttributeModifiers(
         slotContext: SlotContext, id: ResourceLocation, stack: ItemStack
@@ -56,8 +59,9 @@ open class BackpouchItem(
         tooltipFlag: TooltipFlag
     ) {
         if (isUpgradable) {
+            val used = getUpgradeCount(stack)
             tooltipComponents.add(
-                Component.translatable("tooltip.backpouch.sockets", 0, 2)
+                Component.translatable("tooltip.backpouch.sockets", used, 2)
             )
         }
         tooltipComponents.add(
