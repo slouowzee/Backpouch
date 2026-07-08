@@ -9,5 +9,6 @@
   "item.backpouch.tombstone_upgrade": "Tombstone Upgrade",
   "itemGroup.backpouch": "Backpouch",
   "tooltip.backpouch.charm_slots": "+%s Charm Slots when worn",
-  "tooltip.backpouch.sockets": "Sockets: %s/%s"
+  "tooltip.backpouch.sockets": "Sockets: %s/%s",
+  "container.backpouch.upgrades": "Backpouch Upgrades"
 }
