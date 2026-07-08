@@ -1,0 +1,10 @@
+{
+  "item.backpouch.leather_backpouch": "Leather Backpouch",
+  "item.backpouch.iron_backpouch": "Iron Backpouch",
+  "item.backpouch.gold_backpouch": "Gold Backpouch",
+  "item.backpouch.diamond_backpouch": "Diamond Backpouch",
+  "item.backpouch.netherite_backpouch": "Netherite Backpouch",
+  "item.backpouch.slot_upgrade_basic": "Basic Slot Upgrade",
+  "item.backpouch.slot_upgrade_advanced": "Advanced Slot Upgrade",
+  "itemGroup.backpouch": "Backpouch"
+}

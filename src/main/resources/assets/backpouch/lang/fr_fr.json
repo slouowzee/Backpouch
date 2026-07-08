@@ -1,0 +1,10 @@
+{
+  "item.backpouch.leather_backpouch": "Sacoche en cuir",
+  "item.backpouch.iron_backpouch": "Sacoche en fer",
+  "item.backpouch.gold_backpouch": "Sacoche en or",
+  "item.backpouch.diamond_backpouch": "Sacoche en diamant",
+  "item.backpouch.netherite_backpouch": "Sacoche en n\u00e9therite",
+  "item.backpouch.slot_upgrade_basic": "Am\u00e9lioration basique",
+  "item.backpouch.slot_upgrade_advanced": "Am\u00e9lioration avanc\u00e9e",
+  "itemGroup.backpouch": "Backpouch"
+}

@@ -1,0 +1,28 @@
+[[mods]]
+modId = "backpouch"
+version = "1.0.0"
+displayName = "Backpouch"
+logoFile = "backpouch.png"
+description = "Adds a custom Curios backpouch slot with tiered sacoches that grant extra charm slots."
+authors = "slouowze"
+
+[[dependencies.backpouch]]
+    modId = "neoforge"
+    mandatory = true
+    versionRange = "[21,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.backpouch]]
+    modId = "curios"
+    mandatory = true
+    versionRange = "[9.5,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.backpouch]]
+    modId = "kotlinforforge"
+    mandatory = true
+    versionRange = "[5.11,)"
+    ordering = "NONE"
+    side = "BOTH"
