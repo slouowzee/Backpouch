@@ -17,17 +17,23 @@ class UpgradeScreen(
     }
 
     override fun init() {
-        imageHeight = 114 + 18
+        imageHeight = 132
         super.init()
         inventoryLabelY = imageHeight - 94
         titleLabelY = 6
     }
 
     override fun renderBg(graphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
-        val x = (width - imageWidth) / 2
-        val y = (height - imageHeight) / 2
+        val x = leftPos
+        val y = topPos
+
         graphics.blit(CONTAINER_TEXTURE, x, y, 0, 0, imageWidth, 17)
-        graphics.blit(CONTAINER_TEXTURE, x, y + 35, 0, 17 + 6 * 18, imageWidth, 96)
+
+        for (slot in menu.slots.take(2)) {
+            graphics.blit(CONTAINER_TEXTURE, x + slot.x - 1, y + slot.y - 1, 7, 17, 18, 18)
+        }
+
+        graphics.blit(CONTAINER_TEXTURE, x, y + 35, 0, 125, imageWidth, 96)
     }
 
     override fun renderLabels(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {

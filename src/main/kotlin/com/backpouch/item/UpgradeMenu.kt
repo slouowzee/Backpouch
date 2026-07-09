@@ -25,13 +25,14 @@ class UpgradeMenu(
         check(handler.slots == 2) { "UpgradeInventory must have exactly 2 slots" }
 
         addSlot(object : SlotItemHandler(handler, 0, 62, 18) {
+
             override fun mayPickup(player: Player): Boolean {
                 if (!hasItem()) return true
                 if (getItem().item is SlotUpgradeItem && hasOccupiedCharmSlots(player)) return false
                 return super.mayPickup(player)
             }
         })
-        addSlot(object : SlotItemHandler(handler, 1, 80, 18) {
+        addSlot(object : SlotItemHandler(handler, 1, 98, 18) {
             override fun mayPickup(player: Player): Boolean {
                 if (!hasItem()) return true
                 if (getItem().item is SlotUpgradeItem && hasOccupiedCharmSlots(player)) return false
