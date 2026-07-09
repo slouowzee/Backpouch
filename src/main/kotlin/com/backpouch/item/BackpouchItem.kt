@@ -83,7 +83,7 @@ open class BackpouchItem(
 
         val modifiers = HashMultimap.create<Holder<Attribute>, AttributeModifier>()
         modifiers.put(
-            SlotAttribute.getOrCreate("charm"),
+            SlotAttribute.getOrCreate("backpouch_charm"),
             AttributeModifier(
                 CHARM_MODIFIER_ID,
                 totalSlots.toDouble(),
