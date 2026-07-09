@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
 import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.TextColor
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.ai.attributes.Attribute
@@ -31,6 +32,10 @@ open class BackpouchItem(
     }
 
     override fun hasCurioCapability(stack: ItemStack): Boolean = true
+
+    override fun getName(stack: ItemStack): Component {
+        return super.getName(stack).copy().withStyle { it.withColor(TextColor.fromRgb(0x56BFFF)) }
+    }
 
     override fun canUnequip(slotContext: SlotContext, stack: ItemStack): Boolean {
         val opt = CuriosApi.getCuriosInventory(slotContext.entity())

@@ -9,5 +9,6 @@
   "item.backpouch.tombstone_upgrade": "Am\u00e9lioration fun\u00e9raire",
   "itemGroup.backpouch": "Backpouch",
   "tooltip.backpouch.charm_slots": "+%s emplacement\u00b7s Charme quand \u00e9quip\u00e9",
-  "tooltip.backpouch.sockets": "Sockets : %s/%s"
+  "tooltip.backpouch.sockets": "Sockets : %s/%s",
+  "curios.modifiers.backpouch": "Quand \u00e9quip\u00e9 :"
 }
