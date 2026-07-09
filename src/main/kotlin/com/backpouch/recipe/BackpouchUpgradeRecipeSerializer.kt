@@ -10,5 +10,8 @@ object BackpouchUpgradeRecipeSerializer : RecipeSerializer<BackpouchUpgradeRecip
     override fun codec(): MapCodec<BackpouchUpgradeRecipe> = MapCodec.unit(BackpouchUpgradeRecipe())
 
     override fun streamCodec(): StreamCodec<RegistryFriendlyByteBuf, BackpouchUpgradeRecipe> =
-        StreamCodec.unit(BackpouchUpgradeRecipe())
+        StreamCodec.of(
+            { _, _ -> },
+            { BackpouchUpgradeRecipe() }
+        )
 }
