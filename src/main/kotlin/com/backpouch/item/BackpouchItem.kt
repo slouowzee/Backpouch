@@ -102,6 +102,7 @@ open class BackpouchItem(
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
+        val totalSlots = context.level()?.let { baseSlots + getUpgradeBonus(stack, it.registryAccess()) } ?: baseSlots
         if (isUpgradable) {
             val used = getUpgradeCount(stack)
             tooltipComponents.add(
@@ -109,7 +110,7 @@ open class BackpouchItem(
             )
         }
         tooltipComponents.add(
-            Component.translatable("tooltip.backpouch.charm_slots", baseSlots)
+            Component.translatable("tooltip.backpouch.charm_slots", totalSlots)
         )
     }
 }

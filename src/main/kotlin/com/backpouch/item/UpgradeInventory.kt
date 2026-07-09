@@ -34,6 +34,8 @@ class UpgradeInventory : ItemStackHandler {
         }
     }
 
+    override fun getSlotLimit(slot: Int): Int = 1
+
     override fun isItemValid(slot: Int, stack: ItemStack): Boolean {
         return stack.item is SlotUpgradeItem && getStackInSlot(slot).isEmpty
     }
