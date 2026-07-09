@@ -1,6 +1,9 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[5,)"
+
 [[mods]]
 modId = "backpouch"
-version = "1.0.0"
+version = "1.0.1"
 displayName = "Backpouch"
 description = "Adds a custom Curios backpouch slot with tiered sacoches that grant extra charm slots."
 authors = "slouowze"
