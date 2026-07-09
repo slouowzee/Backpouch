@@ -6,7 +6,7 @@ import net.neoforged.neoforge.common.ModConfigSpec
 
 object BackpouchConfig {
     val useRelicsCharm: ModConfigSpec.BooleanValue
-    val COMMON_SPEC: ModConfigSpec
+    val SPEC: ModConfigSpec
 
     init {
         val builder = ModConfigSpec.Builder()
@@ -16,12 +16,11 @@ object BackpouchConfig {
                 "Requires Relics mod to be installed. Default: false"
             )
             .define("useRelicsCharm", false)
-        COMMON_SPEC = builder.build()
+        SPEC = builder.build()
     }
 
     fun register() {
-        ModList.get().getModContainerById(BackpouchMod.MOD_ID).ifPresent { container ->
-            container.registerConfig(ModConfig.Type.COMMON, COMMON_SPEC)
-        }
+        val container = ModList.get().getModContainerById(BackpouchMod.MOD_ID)
+        container.ifPresent { it.registerConfig(ModConfig.Type.COMMON, SPEC) }
     }
 }

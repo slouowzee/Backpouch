@@ -4,7 +4,10 @@ import com.backpouch.item.BackpouchItem
 import com.backpouch.recipe.BackpouchRecipeSerializers
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.bus.api.IEventBus
+import net.neoforged.fml.ModList
 import net.neoforged.fml.common.Mod
+import net.neoforged.neoforge.client.gui.ConfigurationScreen
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import top.theillusivec4.curios.api.CuriosApi
 
 @Mod(BackpouchMod.MOD_ID)
@@ -15,6 +18,12 @@ class BackpouchMod(bus: IEventBus) {
 
     init {
         BackpouchConfig.register()
+        ModList.get().getModContainerById(MOD_ID).ifPresent { container ->
+            container.registerExtensionPoint(
+                IConfigScreenFactory::class.java,
+                IConfigScreenFactory { modContainer, screen -> ConfigurationScreen(modContainer, screen) }
+            )
+        }
         BackpouchItems.ITEMS.register(bus)
         BackpouchCreativeTab.TABS.register(bus)
         BackpouchRecipeSerializers.SERIALIZERS.register(bus)
