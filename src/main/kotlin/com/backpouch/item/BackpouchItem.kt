@@ -2,9 +2,9 @@ package com.backpouch.item
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
+import net.minecraft.ChatFormatting
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
-import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.damagesource.DamageSource
@@ -72,13 +72,18 @@ open class BackpouchItem(
     override fun getAttributeModifiers(
         slotContext: SlotContext, id: ResourceLocation, stack: ItemStack
     ): Multimap<Holder<Attribute>, AttributeModifier> {
-        val modifiers = HashMultimap.create<Holder<Attribute>, AttributeModifier>()
-        val charmHolder = SlotAttribute.getOrCreate("charm")
-        val provider = slotContext.entity().level().registryAccess()
-        val totalSlots = baseSlots + getUpgradeBonus(stack, provider)
+        val entity = slotContext.entity()
+        val level = entity?.level()
+        val provider = level?.registryAccess()
+        val totalSlots = if (provider != null) {
+            baseSlots + getUpgradeBonus(stack, provider)
+        } else {
+            baseSlots
+        }
 
+        val modifiers = HashMultimap.create<Holder<Attribute>, AttributeModifier>()
         modifiers.put(
-            charmHolder,
+            SlotAttribute.getOrCreate("charm"),
             AttributeModifier(
                 CHARM_MODIFIER_ID,
                 totalSlots.toDouble(),
@@ -95,12 +100,12 @@ open class BackpouchItem(
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
-        val totalSlots = context.level()?.let { baseSlots + getUpgradeBonus(stack, it.registryAccess()) } ?: baseSlots
         if (isUpgradable) {
             val used = getUpgradeCount(stack)
             val upgrades = getUpgradeIds(stack)
             tooltipComponents.add(
                 Component.translatable("tooltip.backpouch.sockets", used, 2)
+                    .withStyle(ChatFormatting.GRAY)
             )
             if (upgrades.isNotEmpty()) {
                 val names = upgrades.joinToString(", ") { id ->
@@ -108,15 +113,14 @@ open class BackpouchItem(
                 }
                 tooltipComponents.add(
                     Component.translatable("tooltip.backpouch.upgrade_list", names)
+                        .withStyle(ChatFormatting.GRAY)
                 )
             } else {
                 tooltipComponents.add(
                     Component.translatable("tooltip.backpouch.no_upgrades")
+                        .withStyle(ChatFormatting.GRAY)
                 )
             }
         }
-        tooltipComponents.add(
-            Component.translatable("tooltip.backpouch.charm_slots", totalSlots)
-        )
     }
 }

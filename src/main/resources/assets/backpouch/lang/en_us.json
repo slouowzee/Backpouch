@@ -8,7 +8,6 @@
   "item.backpouch.quadru_slot_upgrade": "Quadru Slot Upgrade",
   "item.backpouch.tombstone_upgrade": "Tombstone Upgrade",
   "itemGroup.backpouch": "Backpouch",
-  "tooltip.backpouch.charm_slots": "+%s Charm Slots when worn",
   "tooltip.backpouch.sockets": "Sockets: %s/%s",
   "tooltip.backpouch.upgrade_slot": "Can be placed in Backpouch upgrade sockets",
   "tooltip.backpouch.upgrade_list": "Upgrades: %s",

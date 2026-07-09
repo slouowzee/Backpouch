@@ -1,5 +1,6 @@
 package com.backpouch.item
 
+import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -16,6 +17,6 @@ class SlotUpgradeItem(
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
-        tooltipComponents.add(Component.translatable("tooltip.backpouch.upgrade_slot"))
+        tooltipComponents.add(Component.translatable("tooltip.backpouch.upgrade_slot").withStyle(ChatFormatting.GRAY))
     }
 }
