@@ -14,21 +14,20 @@ class UpgradeScreen(
 
     companion object {
         val CONTAINER_TEXTURE = ResourceLocation.withDefaultNamespace("textures/gui/container/generic_54.png")
-        private const val CONTAINER_ROWS = 3
     }
 
     override fun init() {
-        imageHeight = 114 + CONTAINER_ROWS * 18
+        imageHeight = 114 + 18
         super.init()
         inventoryLabelY = imageHeight - 94
+        titleLabelY = 6
     }
 
     override fun renderBg(graphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
         val x = (width - imageWidth) / 2
         val y = (height - imageHeight) / 2
-        val containerHeight = CONTAINER_ROWS * 18 + 17
-        graphics.blit(CONTAINER_TEXTURE, x, y, 0, 0, imageWidth, containerHeight)
-        graphics.blit(CONTAINER_TEXTURE, x, y + containerHeight, 0, 17 + 6 * 18, imageWidth, 96)
+        graphics.blit(CONTAINER_TEXTURE, x, y, 0, 0, imageWidth, 17)
+        graphics.blit(CONTAINER_TEXTURE, x, y + 35, 0, 17 + 6 * 18, imageWidth, 96)
     }
 
     override fun renderLabels(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {

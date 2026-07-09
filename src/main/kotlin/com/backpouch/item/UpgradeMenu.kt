@@ -39,7 +39,7 @@ class UpgradeMenu(
             }
         })
 
-        val yOff = (3 - 4) * 18
+        val yOff = (1 - 4) * 18
 
         for (row in 0..2) {
             for (col in 0..8) {

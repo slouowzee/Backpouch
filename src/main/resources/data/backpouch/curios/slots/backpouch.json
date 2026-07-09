@@ -1,7 +1,0 @@
-{
-  "icon": "backpouch:item/slot_backpouch",
-  "size": 1,
-  "order": 200,
-  "useNativeGui": true,
-  "render": false
-}

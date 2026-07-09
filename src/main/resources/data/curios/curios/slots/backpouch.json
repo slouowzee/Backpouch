@@ -1,0 +1,5 @@
+{
+  "order": 400,
+  "icon": "backpouch:item/slot_backpouch",
+  "validators": ["curios:tag"]
+}
