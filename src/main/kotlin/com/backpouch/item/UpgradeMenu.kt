@@ -53,6 +53,11 @@ class UpgradeMenu(
 
     override fun stillValid(player: Player): Boolean = true
 
+    override fun removed(player: Player) {
+        super.removed(player)
+        CuriosApi.getCuriosInventory(player).ifPresent { it.reset() }
+    }
+
     override fun quickMoveStack(player: Player, index: Int): ItemStack {
         val slot = slots[index]
         if (!slot.hasItem()) return ItemStack.EMPTY

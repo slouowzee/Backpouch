@@ -35,6 +35,6 @@ class UpgradeInventory : ItemStackHandler {
     }
 
     override fun isItemValid(slot: Int, stack: ItemStack): Boolean {
-        return stack.item is SlotUpgradeItem
+        return stack.item is SlotUpgradeItem && getStackInSlot(slot).isEmpty
     }
 }
