@@ -39,13 +39,15 @@ class UpgradeMenu(
             }
         })
 
+        val yOff = (3 - 4) * 18
+
         for (row in 0..2) {
             for (col in 0..8) {
-                addSlot(Slot(inv, col + row * 9 + 9, 8 + col * 18, 85 + row * 18))
+                addSlot(Slot(inv, col + row * 9 + 9, 8 + col * 18, 103 + row * 18 + yOff))
             }
         }
         for (col in 0..8) {
-            addSlot(Slot(inv, col, 8 + col * 18, 143))
+            addSlot(Slot(inv, col, 8 + col * 18, 161 + yOff))
         }
     }
 
