@@ -14,6 +14,7 @@ class BackpouchMod(bus: IEventBus) {
     }
 
     init {
+        BackpouchConfig.register()
         BackpouchItems.ITEMS.register(bus)
         BackpouchCreativeTab.TABS.register(bus)
         BackpouchRecipeSerializers.SERIALIZERS.register(bus)

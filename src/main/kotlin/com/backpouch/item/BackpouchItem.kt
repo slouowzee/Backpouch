@@ -18,6 +18,7 @@ import top.theillusivec4.curios.api.SlotAttribute
 import top.theillusivec4.curios.api.SlotContext
 import top.theillusivec4.curios.api.type.capability.ICurio
 import top.theillusivec4.curios.api.type.capability.ICurioItem
+import com.backpouch.BackpouchConfig
 
 open class BackpouchItem(
     properties: Properties,
@@ -81,9 +82,10 @@ open class BackpouchItem(
             baseSlots
         }
 
+        val slotName = if (BackpouchConfig.useRelicsCharm.get()) "charm" else "backpouch_charm"
         val modifiers = HashMultimap.create<Holder<Attribute>, AttributeModifier>()
         modifiers.put(
-            SlotAttribute.getOrCreate("backpouch_charm"),
+            SlotAttribute.getOrCreate(slotName),
             AttributeModifier(
                 CHARM_MODIFIER_ID,
                 totalSlots.toDouble(),
