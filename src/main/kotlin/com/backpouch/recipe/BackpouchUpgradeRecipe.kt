@@ -18,27 +18,16 @@ class BackpouchUpgradeRecipe : SmithingRecipe {
     override fun matches(input: SmithingRecipeInput, level: Level): Boolean {
         val base = input.base()
         val addition = input.addition()
-
-        if (base.isEmpty || base.item !is BackpouchItem) return false
-
-        if (addition.isEmpty) {
-            return hasUpgrades(base)
-        }
-
-        return addition.item is SlotUpgradeItem
+        return base.item is BackpouchItem && addition.item is SlotUpgradeItem
     }
 
     override fun assemble(input: SmithingRecipeInput, provider: HolderLookup.Provider): ItemStack {
         val base = input.base()
         val addition = input.addition()
         val result = base.copy()
-
-        if (addition.isEmpty) {
-            removeAllUpgrades(result)
-        } else if (addition.item is SlotUpgradeItem) {
+        if (addition.item is SlotUpgradeItem) {
             addUpgrade(result, addition)
         }
-
         return result
     }
 
@@ -50,23 +39,10 @@ class BackpouchUpgradeRecipe : SmithingRecipe {
         stack.item is BackpouchItem
 
     override fun isAdditionIngredient(stack: ItemStack): Boolean =
-        stack.item is SlotUpgradeItem || stack.item is BackpouchItem
-
+        stack.item is SlotUpgradeItem
     override fun getSerializer(): RecipeSerializer<*> = BackpouchUpgradeRecipeSerializer
 
     override fun isSpecial(): Boolean = true
-
-    private fun hasUpgrades(stack: ItemStack): Boolean {
-        val data = stack.get(DataComponents.CUSTOM_DATA) ?: return false
-        val tag = data.copyTag()
-        return tag.contains("upgrades", 9)
-    }
-
-    private fun removeAllUpgrades(stack: ItemStack) {
-        val current = stack.getOrDefault(DataComponents.CUSTOM_DATA, net.minecraft.world.item.component.CustomData.EMPTY)
-        val updated = current.update { tag -> tag.remove("upgrades") }
-        stack.set(DataComponents.CUSTOM_DATA, updated)
-    }
 
     private fun addUpgrade(stack: ItemStack, upgradeStack: ItemStack) {
         val upgradeId = BuiltInRegistries.ITEM.getKey(upgradeStack.item).toString()

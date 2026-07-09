@@ -8,7 +8,10 @@ import net.neoforged.fml.ModList
 import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.client.gui.ConfigurationScreen
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
+import net.neoforged.neoforge.common.NeoForge
 import top.theillusivec4.curios.api.CuriosApi
+import top.theillusivec4.curios.api.event.DropRulesEvent
+import top.theillusivec4.curios.api.type.capability.ICurio
 
 @Mod(BackpouchMod.MOD_ID)
 class BackpouchMod(bus: IEventBus) {
@@ -33,6 +36,13 @@ class BackpouchMod(bus: IEventBus) {
         ) { slotResult ->
             slotResult.stack().item is BackpouchItem &&
                 slotResult.slotContext().identifier() == "backpouch"
+        }
+
+        NeoForge.EVENT_BUS.addListener<DropRulesEvent> { event ->
+            event.addOverride(
+                { stack -> stack.item is BackpouchItem && BackpouchItem.hasTombstoneUpgrade(stack) },
+                ICurio.DropRule.ALWAYS_KEEP
+            )
         }
     }
 }

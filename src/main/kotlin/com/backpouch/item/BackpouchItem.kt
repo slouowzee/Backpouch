@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap
 import net.minecraft.ChatFormatting
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.TextColor
 import net.minecraft.resources.ResourceLocation
@@ -23,12 +24,22 @@ import com.backpouch.BackpouchConfig
 
 open class BackpouchItem(
     properties: Properties,
-    private val baseSlots: Int,
-    private val isUpgradable: Boolean = false
+    private val baseSlots: Int
 ) : Item(properties), ICurioItem {
 
     companion object {
         val CHARM_MODIFIER_ID = ResourceLocation.parse("backpouch:charm_bonus")
+
+        fun hasTombstoneUpgrade(stack: ItemStack): Boolean {
+            val data = stack.get(DataComponents.CUSTOM_DATA) ?: return false
+            val tag = data.copyTag()
+            if (!tag.contains("upgrades", 9)) return false
+            val upgrades = tag.getList("upgrades", 8)
+            for (i in 0 until upgrades.size) {
+                if (upgrades.getString(i) == "backpouch:tombstone_upgrade") return true
+            }
+            return false
+        }
     }
 
     override fun hasCurioCapability(stack: ItemStack): Boolean = true
@@ -56,20 +67,41 @@ open class BackpouchItem(
         return true
     }
 
-    open fun getUpgradeBonus(stack: ItemStack, provider: HolderLookup.Provider): Int = 0
+    private fun readUpgradeIds(stack: ItemStack): List<String> {
+        val data = stack.get(DataComponents.CUSTOM_DATA) ?: return emptyList()
+        val tag = data.copyTag()
+        if (!tag.contains("upgrades", 9)) return emptyList()
+        val upgrades = tag.getList("upgrades", 8)
+        val result = mutableListOf<String>()
+        for (i in 0 until upgrades.size) {
+            result.add(upgrades.getString(i))
+        }
+        return result
+    }
 
-    open fun getUpgradeCount(stack: ItemStack): Int = 0
+    open fun getUpgradeIds(stack: ItemStack): List<String> = readUpgradeIds(stack)
 
-    open fun getUpgradeIds(stack: ItemStack): List<String> = emptyList()
+    open fun getUpgradeCount(stack: ItemStack): Int {
+        return readUpgradeIds(stack).size
+    }
 
-    private fun hasTombstoneUpgrade(stack: ItemStack): Boolean {
-        return getUpgradeIds(stack).contains("backpouch:tombstone_upgrade")
+    open fun getUpgradeBonus(stack: ItemStack, provider: HolderLookup.Provider): Int {
+        val upgrades = readUpgradeIds(stack)
+        var bonus = 0
+        for (upgradeId in upgrades) {
+            bonus += when (upgradeId) {
+                "backpouch:bi_slot_upgrade" -> 2
+                "backpouch:quadru_slot_upgrade" -> 4
+                else -> 0
+            }
+        }
+        return bonus
     }
 
     override fun getDropRule(
         slotContext: SlotContext, source: DamageSource, recentlyHit: Boolean, stack: ItemStack
     ): ICurio.DropRule {
-        if (isUpgradable && hasTombstoneUpgrade(stack)) {
+        if (hasTombstoneUpgrade(stack)) {
             return ICurio.DropRule.ALWAYS_KEEP
         }
         return ICurio.DropRule.DEFAULT
@@ -107,27 +139,25 @@ open class BackpouchItem(
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
-        if (isUpgradable) {
-            val used = getUpgradeCount(stack)
-            val upgrades = getUpgradeIds(stack)
+        val used = getUpgradeCount(stack)
+        val upgrades = getUpgradeIds(stack)
+        tooltipComponents.add(
+            Component.translatable("tooltip.backpouch.sockets", used, 2)
+                .withStyle(ChatFormatting.GRAY)
+        )
+        if (upgrades.isNotEmpty()) {
+            val names = upgrades.joinToString(", ") { id ->
+                Component.translatable("item.$id".replace(':', '.')).string
+            }
             tooltipComponents.add(
-                Component.translatable("tooltip.backpouch.sockets", used, 2)
+                Component.translatable("tooltip.backpouch.upgrade_list", names)
                     .withStyle(ChatFormatting.GRAY)
             )
-            if (upgrades.isNotEmpty()) {
-                val names = upgrades.joinToString(", ") { id ->
-                    Component.translatable("item.$id".replace(':', '.')).string
-                }
-                tooltipComponents.add(
-                    Component.translatable("tooltip.backpouch.upgrade_list", names)
-                        .withStyle(ChatFormatting.GRAY)
-                )
-            } else {
-                tooltipComponents.add(
-                    Component.translatable("tooltip.backpouch.no_upgrades")
-                        .withStyle(ChatFormatting.GRAY)
-                )
-            }
+        } else {
+            tooltipComponents.add(
+                Component.translatable("tooltip.backpouch.no_upgrades")
+                    .withStyle(ChatFormatting.GRAY)
+            )
         }
     }
 }

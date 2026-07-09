@@ -1,7 +1,6 @@
 package com.backpouch
 
 import com.backpouch.item.BackpouchItem
-import com.backpouch.item.NetheriteBackpouchItem
 import com.backpouch.item.SlotUpgradeItem
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.Item
@@ -24,8 +23,8 @@ object BackpouchItems {
     val DIAMOND_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("diamond_backpouch",
         Supplier { BackpouchItem(Item.Properties().stacksTo(1), baseSlots = 10) })
 
-    val NETHERITE_BACKPOUCH: DeferredHolder<Item, NetheriteBackpouchItem> = ITEMS.register("netherite_backpouch",
-        Supplier { NetheriteBackpouchItem(Item.Properties().stacksTo(1).fireResistant(), baseSlots = 12) })
+    val NETHERITE_BACKPOUCH: DeferredHolder<Item, BackpouchItem> = ITEMS.register("netherite_backpouch",
+        Supplier { BackpouchItem(Item.Properties().stacksTo(1).fireResistant(), baseSlots = 12) })
 
     val BI_SLOT_UPGRADE: DeferredHolder<Item, SlotUpgradeItem> = ITEMS.register("bi_slot_upgrade",
         Supplier { SlotUpgradeItem(Item.Properties().stacksTo(16), slotBonus = 2) })
