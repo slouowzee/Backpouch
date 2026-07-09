@@ -2,5 +2,5 @@
   "order": 400,
   "size": 1,
   "icon": "backpouch:item/slot_backpouch",
-  "validators": ["curios:tag"]
+  "validators": ["backpouch:backpouch"]
 }

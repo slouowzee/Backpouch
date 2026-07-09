@@ -1,9 +1,11 @@
 package com.backpouch
 
-import com.backpouch.item.UpgradeScreen
+import com.backpouch.item.BackpouchItem
+import com.backpouch.recipe.BackpouchRecipeSerializers
+import net.minecraft.resources.ResourceLocation
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent
+import top.theillusivec4.curios.api.CuriosApi
 
 @Mod(BackpouchMod.MOD_ID)
 class BackpouchMod(bus: IEventBus) {
@@ -14,10 +16,13 @@ class BackpouchMod(bus: IEventBus) {
     init {
         BackpouchItems.ITEMS.register(bus)
         BackpouchCreativeTab.TABS.register(bus)
-        BackpouchMenus.MENUS.register(bus)
+        BackpouchRecipeSerializers.SERIALIZERS.register(bus)
 
-        bus.addListener { event: RegisterMenuScreensEvent ->
-            event.register(BackpouchMenus.UPGRADE_MENU.get(), ::UpgradeScreen)
+        CuriosApi.registerCurioPredicate(
+            ResourceLocation.parse("$MOD_ID:backpouch")
+        ) { slotResult ->
+            slotResult.stack().item is BackpouchItem &&
+                slotResult.slotContext().identifier() == "backpouch"
         }
     }
 }

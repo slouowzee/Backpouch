@@ -11,6 +11,7 @@
   "tooltip.backpouch.charm_slots": "+%s Charm Slots when worn",
   "tooltip.backpouch.sockets": "Sockets: %s/%s",
   "tooltip.backpouch.upgrade_slot": "Can be placed in Backpouch upgrade sockets",
-  "container.backpouch.upgrades": "Backpouch Upgrades",
+  "tooltip.backpouch.upgrade_list": "Upgrades: %s",
+  "tooltip.backpouch.no_upgrades": "Use Smithing Table to install upgrades",
   "curios.identifier.backpouch": "Backpouch"
 }

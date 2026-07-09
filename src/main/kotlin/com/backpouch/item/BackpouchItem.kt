@@ -54,17 +54,10 @@ open class BackpouchItem(
 
     open fun getUpgradeCount(stack: ItemStack): Int = 0
 
+    open fun getUpgradeIds(stack: ItemStack): List<String> = emptyList()
+
     private fun hasTombstoneUpgrade(stack: ItemStack): Boolean {
-        val data = stack.get(DataComponents.CUSTOM_DATA) ?: return false
-        val tag = data.copyTag()
-        if (!tag.contains("upgrades", 10)) return false
-        val upgrades = tag.getCompound("upgrades")
-        if (!upgrades.contains("Items", 9)) return false
-        val items = upgrades.getList("Items", 10)
-        for (i in 0 until items.size) {
-            if (items.getCompound(i).getString("id") == "backpouch:tombstone_upgrade") return true
-        }
-        return false
+        return getUpgradeIds(stack).contains("backpouch:tombstone_upgrade")
     }
 
     override fun getDropRule(
@@ -105,9 +98,22 @@ open class BackpouchItem(
         val totalSlots = context.level()?.let { baseSlots + getUpgradeBonus(stack, it.registryAccess()) } ?: baseSlots
         if (isUpgradable) {
             val used = getUpgradeCount(stack)
+            val upgrades = getUpgradeIds(stack)
             tooltipComponents.add(
                 Component.translatable("tooltip.backpouch.sockets", used, 2)
             )
+            if (upgrades.isNotEmpty()) {
+                val names = upgrades.joinToString(", ") { id ->
+                    Component.translatable("item.$id".replace(':', '.')).string
+                }
+                tooltipComponents.add(
+                    Component.translatable("tooltip.backpouch.upgrade_list", names)
+                )
+            } else {
+                tooltipComponents.add(
+                    Component.translatable("tooltip.backpouch.no_upgrades")
+                )
+            }
         }
         tooltipComponents.add(
             Component.translatable("tooltip.backpouch.charm_slots", totalSlots)
